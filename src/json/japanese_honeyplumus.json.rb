@@ -36,7 +36,6 @@ CONDITIONS = [
                                 'input_mode_id' => 'com.apple.inputmethod.Japanese.HalfWidthKana',
                               },
                             ]),
-  Karabiner.frontmost_application_unless(['loginwindow']),
 ].freeze
 
 ########################################
@@ -337,38 +336,38 @@ def main
           normal_key('b', 'b'),
 
           # 右最上段
-          normal_key('6', '='),
-          normal_key('7', ''),
-          normal_key('8', ''),
-          normal_key('9', ''),
-          normal_key('0', ''),
-          normal_key('hyphen', ''),
-          normal_key('=', ''),
+          normal_key('6', 'equal_sign'),
+          normal_key('7', '6'),
+          normal_key('8', '7'),
+          normal_key('9', '8'),
+          normal_key('0', '9'),
+          normal_key('hyphen', '0'),
+          normal_key('equal_sign', 'hyphen'),
 
           # 右上段
-          normal_key('y', ''),
-          normal_key('u', ''),
-          normal_key('i', ''),
-          normal_key('o', ''),
-          normal_key('p', ''),
-          normal_key('open_bracket', ''),
-          normal_key('close_bracket', ''),
-          normal_key('backslash', ''),
+          normal_key('y', 'backslash'),
+          normal_key('u', 'y'),
+          normal_key('i', 'u'),
+          normal_key('o', 'i'),
+          normal_key('p', 'o'),
+          normal_key('open_bracket', 'p'),
+          normal_key('close_bracket', 'open_bracket'),
+          normal_key('backslash', 'close_bracket'),
 
           # 右中段
-          normal_key('h', ''),
-          normal_key('j', ''),
-          normal_key('k', ''),
-          normal_key('l', ''),
-          normal_key('semicolon', ''),
-          normal_key('quote', ''),
+          normal_key('h', 'quote'),
+          normal_key('j', 'h'),
+          normal_key('k', 'j'),
+          normal_key('l', 'k'),
+          normal_key('semicolon', 'l'),
+          normal_key('quote', 'semicolon'),
 
           # 右下段
-          normal_key('n', ''),
-          normal_key('m', ''),
-          normal_key('comma', ''),
-          normal_key('period', ''),
-          normal_key('slash', ''),
+          normal_key('n', 'slash'),
+          normal_key('m', 'n'),
+          normal_key('comma', 'm'),
+          normal_key('period', 'comma'),
+          normal_key('slash', 'period'),
         ],
       },
     ]
