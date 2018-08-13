@@ -1,0 +1,42 @@
+{
+  "title": "test",
+  "rules": [
+    {
+      "description": "simultaneous test",
+      "manipulators": [
+        {
+          "type": "basic",
+          "from": {
+            "key_code": [
+              "j",
+              "g"
+            ],
+            "modifiers": {
+              "mandatory": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": [
+                "n",
+                "n"
+              ]
+            }
+          ],
+          "conditions": [
+            {
+              "type": "input_source_if",
+              "input_sources": [
+                {
+                  "language": "ja"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
