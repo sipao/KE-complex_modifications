@@ -11,8 +11,16 @@ require_relative '../lib/karabiner.rb'
 ########################################
 # 有効になる条件
 
-#CONDITIONS = [
-#].freeze
+MODIFIERS = 
+    Karabiner.from_modifiers(nil,["any"]).freeze
+    
+CONDITIONS = [
+  Karabiner.input_source_if([
+                              {
+                                'language' => 'en',
+                              },
+                            ]),
+].freeze
 
 ########################################
 # ローマ字入力の定義
@@ -33,112 +41,6 @@ def key_with_shift(key_code)
     'repeat' => false,
   }
 end
-
-ROMAN_MAP = {
-  'あ' => [key('a')],
-  'い' => [key('i')],
-  'う' => [key('u')],
-  'え' => [key('e')],
-  'お' => [key('o')],
-  'か' => [key('k'), key('a')],
-  'き' => [key('k'), key('i')],
-  'く' => [key('k'), key('u')],
-  'け' => [key('k'), key('e')],
-  'こ' => [key('k'), key('o')],
-
-  'さ' => [key('s'), key('a')],
-  'し' => [key('s'), key('i')],
-  'す' => [key('s'), key('u')],
-  'せ' => [key('s'), key('e')],
-  'そ' => [key('s'), key('o')],
-
-  'ざ' => [key('z'), key('a')],
-  'じ' => [key('z'), key('i')],
-  'ず' => [key('z'), key('u')],
-  'ぜ' => [key('z'), key('e')],
-  'ぞ' => [key('z'), key('o')],
-
-  'た' => [key('t'), key('a')],
-  'ち' => [key('t'), key('i')],
-  'つ' => [key('t'), key('u')],
-  'て' => [key('t'), key('e')],
-  'と' => [key('t'), key('o')],
-
-  'だ' => [key('d'), key('a')],
-  'ぢ' => [key('d'), key('i')],
-  'づ' => [key('d'), key('u')],
-  'で' => [key('d'), key('e')],
-  'ど' => [key('d'), key('o')],
-
-  'な' => [key('n'), key('a')],
-  'に' => [key('n'), key('i')],
-  'ぬ' => [key('n'), key('u')],
-  'ね' => [key('n'), key('e')],
-  'の' => [key('n'), key('o')],
-
-  'は' => [key('h'), key('a')],
-  'ひ' => [key('h'), key('i')],
-  'ふ' => [key('h'), key('u')],
-  'へ' => [key('h'), key('e')],
-  'ほ' => [key('h'), key('o')],
-
-  'ば' => [key('b'), key('a')],
-  'び' => [key('b'), key('i')],
-  'ぶ' => [key('b'), key('u')],
-  'べ' => [key('b'), key('e')],
-  'ぼ' => [key('b'), key('o')],
-
-  'ぱ' => [key('p'), key('a')],
-  'ぴ' => [key('p'), key('i')],
-  'ぷ' => [key('p'), key('u')],
-  'ぺ' => [key('p'), key('e')],
-  'ぽ' => [key('p'), key('o')],
-
-  'ま' => [key('m'), key('a')],
-  'み' => [key('m'), key('i')],
-  'む' => [key('m'), key('u')],
-  'め' => [key('m'), key('e')],
-  'も' => [key('m'), key('o')],
-
-  'や' => [key('y'), key('a')],
-  'ゆ' => [key('y'), key('u')],
-  'よ' => [key('y'), key('o')],
-
-  'ら' => [key('r'), key('a')],
-  'り' => [key('r'), key('i')],
-  'る' => [key('r'), key('u')],
-  'れ' => [key('r'), key('e')],
-  'ろ' => [key('r'), key('o')],
-
-  'わ' => [key('w'), key('a')],
-  'を' => [key('w'), key('o')],
-  'ん' => [key('n'), key('n')],
-
-
-  'ぁ' => [key('x'), key('a')],
-  'ぃ' => [key('x'), key('i')],
-  'ぅ' => [key('x'), key('u')],
-  'ぇ' => [key('x'), key('e')],
-  'ぉ' => [key('x'), key('o')],
-
-  'ゃ' => [key('x'), key('y'), key('a')],
-  'ゅ' => [key('x'), key('y'), key('u')],
-  'ょ' => [key('x'), key('y'), key('o')],
-
-
-  '1' => [key('1')],
-  '2' => [key('2')],
-  '3' => [key('3')],
-  '4' => [key('4')],
-  '5' => [key('5')],
-  '6' => [key('6')],
-  '7' => [key('7')],
-  '8' => [key('8')],
-  '9' => [key('9')],
-  '0' => [key('0')],
-  '?' => [key_with_shift('slash')],
-  '=' => [key('equal_sign')],
-}.freeze
 
 ########################################
 
@@ -189,7 +91,7 @@ def main
           normal_key('9', '8'),
           normal_key('0', '9'),
           normal_key('hyphen', '0'),
-          normal_key('equal_sign', '-'),
+          normal_key('equal_sign', 'hyphen'),
 
           # 右上段
           normal_key('y', 'backslash'),
@@ -226,11 +128,12 @@ def normal_key(key, char)
     'type' => 'basic',
     'from' => {
       'key_code' => key,
+      'modifiers' => MODIFIERS,
     },
     'to' => [{
       'key_code' => char,
     }],
-#    'conditions' => CONDITIONS,
+    'conditions' => CONDITIONS,
   }
 end
 
