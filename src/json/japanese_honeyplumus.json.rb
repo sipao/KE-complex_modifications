@@ -58,6 +58,16 @@ def key_with_shift(key_code)
   }
 end
 
+def key_with_opto(key_code)
+  {
+    'key_code' => key_code,
+    'modifiers' => [
+      'left_optopn',
+    ],
+    'repeat' => false,
+  }
+end
+
 ROMAN_MAP = {
   'あ' => [key('a')],
   'い' => [key('i')],
@@ -162,6 +172,9 @@ ROMAN_MAP = {
   '0' => [key('0')],
   '?' => [key_with_shift('slash')],
   '=' => [key('equal_sign')],
+  '[' => [key_with_optp('open_bracket')],
+  ']' => [key_with_optp('close_bracket')],
+  '…' => [key_with_optp('semicolon')],
 }.freeze
 
 ########################################
@@ -179,37 +192,37 @@ def main
           # 左シフト
           # 左最上段
           left_shift_key('1', '?'),
-          left_shift_key('2', ''),
-          left_shift_key('3', ''),
-          left_shift_key('4', ''),
-          left_shift_key('5', ''),
+          left_shift_key('2', 'slash'),
+          left_shift_key('3', 'grave_accent_and_tilde'),
+          left_shift_key('4', 'open_bracket'),
+          left_shift_key('5', 'close_bracket'),
 
           # 左上段
-          left_shift_key('q', ''),
-          left_shift_key('w', ''),
-          left_shift_key('e', ''),
-          left_shift_key('r', ''),
-          left_shift_key('t', ''),
+          left_shift_key('q', 'ぺ'),
+          left_shift_key('w', 'け'),
+          left_shift_key('e', 'よ'),
+          left_shift_key('r', 'ー'),
+          left_shift_key('t', '…'),
 
           # 左中段
-          left_shift_key('a', ''),
-          left_shift_key('s', ''),
-          left_shift_key('d', ''),
-          left_shift_key('f', ''),
-          left_shift_key('g', ''),
+          left_shift_key('a', 'め'),
+          left_shift_key('s', 'や'),
+          left_shift_key('d', 'も'),
+          left_shift_key('f', 'さ'),
+          left_shift_key('g', 'ぅ'),
 
           # 左下段
-          left_shift_key('z', ''),
-          left_shift_key('x', ''),
-          left_shift_key('c', ''),
-          left_shift_key('v', ''),
-          left_shift_key('b', ''),
+          left_shift_key('z', 'ゅ'),
+          left_shift_key('x', 'ゃ'),
+          left_shift_key('c', 'ふ'),
+          left_shift_key('v', 'ょ'),
+          left_shift_key('b', 'ぉ'),
 
           # 右最上段
           left_shift_key('6', ''),
           left_shift_key('7', ''),
-          left_shift_key('8', ''),
-          left_shift_key('9', ''),
+          left_shift_key('8', '['),
+          left_shift_key('9', ']'),
           left_shift_key('0', ''),
           left_shift_key('hyphen', ''),
           left_shift_key('equal_sign', ''),
@@ -217,20 +230,20 @@ def main
           # 右上段
           left_shift_key('y', ''),
           left_shift_key('u', ''),
-          left_shift_key('i', ''),
-          left_shift_key('o', ''),
-          left_shift_key('p', ''),
-          left_shift_key('open_bracket', ''),
-          left_shift_key('close_bracket', ''),
+          left_shift_key('i', 'び'),
+          left_shift_key('o', 'ぎ'),
+          left_shift_key('p', 'づ'),
+          left_shift_key('open_bracket', 'べ'),
+          left_shift_key('close_bracket', 'ぴ'),
           left_shift_key('backslash', ''),
 
           # 右中段
           left_shift_key('h', ''),
-          left_shift_key('j', ''),
-          left_shift_key('k', ''),
-          left_shift_key('l', ''),
-          left_shift_key('semicolon', ''),
-          left_shift_key('quote', ''),
+          left_shift_key('j', 'ぃ'),
+          left_shift_key('k', 'ぁ'),
+          left_shift_key('l', 'ぐ'),
+          left_shift_key('semicolon', 'じ'),
+          left_shift_key('quote', 'ど'),
 
           # 右下段
           left_shift_key('n', ''),
