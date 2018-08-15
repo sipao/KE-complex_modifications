@@ -147,6 +147,7 @@ ROMAN_MAP = {
   'わ' => [key('w'), key('a')],
   'を' => [key('w'), key('o')],
   'ん' => [key('n'), key('n')],
+  'ヴ' => [key('v'), key('u')],
 
 
   'ぁ' => [key('x'), key('a')],
@@ -172,9 +173,11 @@ ROMAN_MAP = {
   '0' => [key('0')],
   '?' => [key_with_shift('slash')],
   '=' => [key('equal_sign')],
-  '[' => [key_with_optp('open_bracket')],
-  ']' => [key_with_optp('close_bracket')],
-  '…' => [key_with_optp('semicolon')],
+  '[' => [key_with_opto('open_bracket')],
+  ']' => [key_with_opto('close_bracket')],
+  '…' => [key_with_opto('semicolon')],
+  '(' => [key_with_shift('9')],
+  ')' => [key_with_shift('0')],
 }.freeze
 
 ########################################
@@ -221,8 +224,8 @@ def main
           # 右最上段
           left_shift_key('6', ''),
           left_shift_key('7', ''),
-          left_shift_key('8', '['),
-          left_shift_key('9', ']'),
+          left_shift_key('8', ''),
+          left_shift_key('9', ''),
           left_shift_key('0', ''),
           left_shift_key('hyphen', ''),
           left_shift_key('equal_sign', ''),
@@ -246,17 +249,17 @@ def main
           left_shift_key('quote', 'ど'),
 
           # 右下段
-          left_shift_key('n', ''),
-          left_shift_key('m', ''),
-          left_shift_key('comma', ''),
-          left_shift_key('period', ''),
-          left_shift_key('slash', ''),
+          left_shift_key('n', '|'),
+          left_shift_key('m', 'ぇ'),
+          left_shift_key('comma', 'ヴ'),
+          left_shift_key('period', 'ず'),
+          left_shift_key('slash', 'ぢ'),
 
           # ------------------------------
           # 右シフト
 
           # 左最上段
-          right_shift_key('1', '?'),
+          right_shift_key('1', ''),
           right_shift_key('2', ''),
           right_shift_key('3', ''),
           right_shift_key('4', ''),
@@ -286,10 +289,10 @@ def main
           # 右最上段
           right_shift_key('6', ''),
           right_shift_key('7', ''),
-          right_shift_key('8', ''),
-          right_shift_key('9', ''),
-          right_shift_key('0', ''),
-          right_shift_key('hyphen', ''),
+          right_shift_key('8', '['),
+          right_shift_key('9', ']'),
+          right_shift_key('0', '('),
+          right_shift_key('hyphen', ')'),
           right_shift_key('equal_sign', ''),
 
           # 右上段
