@@ -171,6 +171,150 @@ ROMAN_MAP = {
   'ゅ' => [key('x'), key('y'), key('u')],
   'ょ' => [key('x'), key('y'), key('o')],
 
+=begin
+  'ゃ' => [key(''), key('i'), key('x'), key('y'), key('a')],
+  'ゅ' => [key(''), key('i'), key('x'), key('y'), key('u')],
+  'ょ' => [key(''), key('i'), key('x'), key('y'), key('o')],
+  'ぃ' => [key(''), key('i'), key('x'), key('i')],
+  'ぇ' => [key(''), key('i'), key('x'), key('e')],
+  'ゃ' => [key(''), key('i'), key('x'), key('y'), key('a')],
+  'ゅ' => [key(''), key('i'), key('x'), key('y'), key('u')],
+  'ょ' => [key(''), key('i'), key('x'), key('y'), key('o')],
+  'ぃ' => [key(''), key('i'), key('x'), key('i')],
+  'ぇ' => [key(''), key('i'), key('x'), key('e')],
+  'ゃ' => [key(''), key('i'), key('x'), key('y'), key('a')],
+  'ゅ' => [key(''), key('i'), key('x'), key('y'), key('u')],
+  'ょ' => [key(''), key('i'), key('x'), key('y'), key('o')],
+  'ぃ' => [key(''), key('i'), key('x'), key('i')],
+  'ぇ' => [key(''), key('i'), key('x'), key('e')],
+=end
+
+  'だけ' => [key('d'), key('a'), key('k'), key('e')],
+  'でも' => [key('d'), key('e'), key('m'), key('o')],
+  'ませ' => [key('m'), key('a'), key('s'), key('e')],
+  'まで' => [key('m'), key('a'), key('d'), key('e')],
+  'いき' => [key('i'), key('k'), key('i')],
+  'くれ' => [key('k'), key('u'), key('r'), key('e')],
+  'あり' => [key('a'), key('r'), key('i')],
+  'いち' => [key('i'), key('t'), key('i')],
+  'ぬぉ' => [key('n'), key('u'), key('x'), key('o')],
+
+  'ちゃ' => [key('t'), key('i'), key('x'), key('y'), key('a')],
+  'ちゅ' => [key('t'), key('i'), key('x'), key('y'), key('u')],
+  'ちょ' => [key('t'), key('i'), key('x'), key('y'), key('o')],
+  'ちぃ' => [key('t'), key('i'), key('x'), key('i')],
+  'ちぇ' => [key('t'), key('i'), key('x'), key('e')],
+  'ぢゃ' => [key('d'), key('i'), key('x'), key('y'), key('a')],
+  'ぢゅ' => [key('d'), key('i'), key('x'), key('y'), key('u')],
+  'ぢょ' => [key('d'), key('i'), key('x'), key('y'), key('o')],
+  'ぢぃ' => [key('d'), key('i'), key('x'), key('i')],
+  'ぢぇ' => [key('d'), key('i'), key('x'), key('e')],
+
+  'てゅ' => [key('t'), key('e'), key('x'), key('y'), key('u')],
+  'てぃ' => [key('t'), key('e'), key('x'), key('i')],
+  'でゅ' => [key('d'), key('e'), key('x'), key('y'), key('u')],
+  'でぃ' => [key('d'), key('e'), key('x'), key('i')],
+
+  'ヴぁ' => [key('v'), key('u'), key('x'), key('a')],
+  'ヴぅ' => [key('v'), key('u'), key('x'), key('u')],
+  'ヴぉ' => [key('v'), key('u'), key('x'), key('o')],
+  'ヴぃ' => [key('v'), key('u'), key('x'), key('i')],
+  'ヴぇ' => [key('v'), key('u'), key('x'), key('e')],
+  'うぃ' => [key('u'), key('x'), key('a')],
+  'うぇ' => [key('u'), key('x'), key('u')],
+  'うぉ' => [key('u'), key('x'), key('o')],
+
+  'とぅ' => [key('t'), key('o'), key('x'), key('u')],
+  'どぅ' => [key('d'), key('o'), key('x'), key('u')],
+
+  'りゃ' => [key('r'), key('i'), key('x'), key('y'), key('a')],
+  'りゅ' => [key('r'), key('i'), key('x'), key('y'), key('u')],
+  'りょ' => [key('r'), key('i'), key('x'), key('y'), key('o')],
+  'りぃ' => [key('r'), key('i'), key('x'), key('i')],
+  'りぇ' => [key('r'), key('i'), key('x'), key('e')],
+  'しゃ' => [key('s'), key('i'), key('x'), key('y'), key('a')],
+  'しゅ' => [key('s'), key('i'), key('x'), key('y'), key('u')],
+  'しょ' => [key('s'), key('i'), key('x'), key('y'), key('o')],
+  'しぃ' => [key('s'), key('i'), key('x'), key('i')],
+  'しぇ' => [key('s'), key('i'), key('x'), key('e')],
+  'じゃ' => [key('j'), key('i'), key('x'), key('y'), key('a')],
+  'じゅ' => [key('j'), key('i'), key('x'), key('y'), key('u')],
+  'じょ' => [key('j'), key('i'), key('x'), key('y'), key('o')],
+  'じぃ' => [key('j'), key('i'), key('x'), key('i')],
+  'じぇ' => [key('j'), key('i'), key('x'), key('e')],
+
+  'いぇ' => [key('i'), key('x'), key('y'), key('e')],
+  'くゃ' => [key('k'), key('u'), key('x'), key('y'), key('a')],
+  'くゎ' => [key('k'), key('u'), key('x'), key('w'), key('a')],
+  'くょ' => [key('k'), key('u'), key('x'), key('y'), key('o')],
+  'くぃ' => [key('k'), key('u'), key('x'), key('i')],
+  'くぇ' => [key('k'), key('u'), key('x'), key('e')],
+  'ぐゃ' => [key('g'), key('u'), key('x'), key('y'), key('a')],
+  'ぐゎ' => [key('g'), key('u'), key('x'), key('w'), key('a')],
+  'ぐょ' => [key('g'), key('u'), key('x'), key('y'), key('o')],
+  'ぐぃ' => [key('g'), key('u'), key('x'), key('i')],
+  'ぐぇ' => [key('g'), key('u'), key('x'), key('e')],
+
+  'ふゃ' => [key('f'), key('u'), key('x'), key('y'), key('a')],
+  'ふゅ' => [key('f'), key('u'), key('x'), key('y'), key('u')],
+  'ふょ' => [key('f'), key('u'), key('x'), key('y'), key('o')],
+  'ふぃ' => [key('f'), key('u'), key('x'), key('i')],
+  'ふぇ' => [key('f'), key('u'), key('x'), key('e')],
+  'ぶゃ' => [key('b'), key('u'), key('x'), key('y'), key('a')],
+  'ぶゅ' => [key('b'), key('u'), key('x'), key('y'), key('u')],
+  'ぶょ' => [key('b'), key('u'), key('x'), key('y'), key('o')],
+  'ぶぃ' => [key('b'), key('u'), key('x'), key('i')],
+  'ぶぇ' => [key('b'), key('u'), key('x'), key('e')],
+
+  'にゃ' => [key('n'), key('i'), key('x'), key('y'), key('a')],
+  'にゅ' => [key('n'), key('i'), key('x'), key('y'), key('u')],
+  'にょ' => [key('n'), key('i'), key('x'), key('y'), key('o')],
+  'にぃ' => [key('n'), key('i'), key('x'), key('i')],
+  'にぇ' => [key('n'), key('i'), key('x'), key('e')],
+  'つゃ' => [key('t'), key('u'), key('x'), key('y'), key('a')],
+  'つゅ' => [key('t'), key('u'), key('x'), key('y'), key('u')],
+  'つょ' => [key('t'), key('u'), key('x'), key('y'), key('o')],
+  'つぃ' => [key('t'), key('u'), key('x'), key('i')],
+  'つぇ' => [key('t'), key('u'), key('x'), key('e')],
+  'づゃ' => [key('d'), key('u'), key('x'), key('y'), key('a')],
+  'づゅ' => [key('d'), key('u'), key('x'), key('y'), key('u')],
+  'づょ' => [key('d'), key('u'), key('x'), key('y'), key('o')],
+  'づぃ' => [key('d'), key('u'), key('x'), key('i')],
+  'づぇ' => [key('d'), key('u'), key('x'), key('e')],
+
+  'きゃ' => [key('k'), key('i'), key('x'), key('y'), key('a')],
+  'きゅ' => [key('k'), key('i'), key('x'), key('y'), key('u')],
+  'きょ' => [key('k'), key('i'), key('x'), key('y'), key('o')],
+  'きぃ' => [key('k'), key('i'), key('x'), key('i')],
+  'きぇ' => [key('k'), key('i'), key('x'), key('e')],
+  'ぎゃ' => [key('g'), key('i'), key('x'), key('y'), key('a')],
+  'ぎゅ' => [key('g'), key('i'), key('x'), key('y'), key('u')],
+  'ぎょ' => [key('g'), key('i'), key('x'), key('y'), key('o')],
+  'ぎぃ' => [key('g'), key('i'), key('x'), key('i')],
+  'ぎぇ' => [key('g'), key('i'), key('x'), key('e')],
+
+  'ひゃ' => [key('h'), key('i'), key('x'), key('y'), key('a')],
+  'ひゅ' => [key('h'), key('i'), key('x'), key('y'), key('u')],
+  'ひょ' => [key('h'), key('i'), key('x'), key('y'), key('o')],
+  'ひぃ' => [key('h'), key('i'), key('x'), key('i')],
+  'ひぇ' => [key('h'), key('i'), key('x'), key('e')],
+  'ぴゃ' => [key('p'), key('i'), key('x'), key('y'), key('a')],
+  'ぴゅ' => [key('p'), key('i'), key('x'), key('y'), key('u')],
+  'ぴょ' => [key('p'), key('i'), key('x'), key('y'), key('o')],
+  'ぴぃ' => [key('p'), key('i'), key('x'), key('i')],
+  'ぴぇ' => [key('p'), key('i'), key('x'), key('e')],
+  'びゃ' => [key('b'), key('i'), key('x'), key('y'), key('a')],
+  'びゅ' => [key('b'), key('i'), key('x'), key('y'), key('u')],
+  'びょ' => [key('b'), key('i'), key('x'), key('y'), key('o')],
+  'びぃ' => [key('b'), key('i'), key('x'), key('i')],
+  'びぇ' => [key('b'), key('i'), key('x'), key('e')],
+
+  'みゃ' => [key('m'), key('i'), key('x'), key('y'), key('a')],
+  'みゅ' => [key('m'), key('i'), key('x'), key('y'), key('u')],
+  'みょ' => [key('m'), key('i'), key('x'), key('y'), key('o')],
+  'みぃ' => [key('m'), key('i'), key('x'), key('i')],
+  'みぇ' => [key('m'), key('i'), key('x'), key('e')],
+
 
   '1' => [key('1')],
   '2' => [key('2')],
@@ -217,6 +361,58 @@ def main
         'description' => 'Japanese HoneyPlum US',
         'manipulators' => [
           # シフトありから並べること
+
+          # ------------------------------
+          # 蜂蜜マトリックス
+          # 
+#          simultaneous_key('', '', ''),
+=begin 
+          simultaneous_key('', 'r', ''),
+          simultaneous_key('', 'w', ''),
+          simultaneous_key('', 'e', ''),
+          simultaneous_key('', 't', ''),
+          simultaneous_key('', 'q', ''),
+
+          simultaneous_key('', 'f', ''),
+          simultaneous_key('', 's', ''),
+          simultaneous_key('', 'd', ''),
+          simultaneous_key('', 'g', ''),
+          simultaneous_key('', 'a', ''),
+
+          simultaneous_key('', 'v', ''),
+          simultaneous_key('', 'x', ''),
+          simultaneous_key('', 'c', ''),
+          simultaneous_key('', 'b', ''),
+          simultaneous_key('', 'z', ''),
+=end
+          simultaneous_key('i', 'r', 'ひゃ'),
+          simultaneous_key('i', 'w', 'ひゅ'),
+          simultaneous_key('i', 'e', 'ひょ'),
+          simultaneous_key('i', 't', 'ひぃ'),
+          simultaneous_key('i', 'q', 'ひぇ'),
+
+          simultaneous_key('i', 'f', 'ぴゃ'),
+          simultaneous_key('i', 's', 'ぴゅ'),
+          simultaneous_key('i', 'd', 'ぴょ'),
+          simultaneous_key('i', 'g', 'ぴぃ'),
+          simultaneous_key('i', 'a', 'ぴぇ'),
+
+          simultaneous_key('i', 'v', 'びゃ'),
+          simultaneous_key('i', 'x', 'びゅ'),
+          simultaneous_key('i', 'c', 'びょ'),
+          simultaneous_key('i', 'b', 'びぃ'),
+          simultaneous_key('i', 'z', 'びぇ'),
+
+          simultaneous_key('u', 'f', 'ゃ'),
+          simultaneous_key('u', 's', 'ゅ'),
+          simultaneous_key('u', 'd', 'ょ'),
+
+          simultaneous_key('m', 'r', 'みゃ'),
+          simultaneous_key('m', 'w', 'みゅ'),
+          simultaneous_key('m', 'e', 'みょ'),
+
+          # を
+          simultaneous_key('d', 'k', 'を'),
 
           # ------------------------------
           # 左シフト
@@ -457,6 +653,24 @@ def right_shift_key(key, char)
         },
         {
           'key_code' => RIGHT_SHIFT_KEY_CODE,
+        },
+      ],
+    },
+    'to' => ROMAN_MAP[char],
+    'conditions' => CONDITIONS,
+  }
+end
+
+def simultaneous_key(key1, key2, char)
+  {
+    'type' => 'basic',
+    'from' => {
+      'simultaneous' => [
+        {
+          'key_code' => key1,
+        },
+        {
+          'key_code' => key2,
         },
       ],
     },
