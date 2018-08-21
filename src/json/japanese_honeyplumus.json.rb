@@ -385,6 +385,27 @@ def main
           simultaneous_key('', 'b', ''),
           simultaneous_key('', 'z', ''),
 =end
+
+          simultaneous_key('u', 'f', 'ゃ'),
+          simultaneous_key('u', 's', 'ゅ'),
+          simultaneous_key('u', 'd', 'ょ'),
+
+          simultaneous_key('semicolon', 'r', 'りゃ'),
+          simultaneous_key('semicolon', 'w', 'りゅ'),
+          simultaneous_key('semicolon', 'e', 'りょ'),
+          simultaneous_key('semicolon', 't', 'りぃ'),
+          simultaneous_key('semicolon', 'q', 'りぇ'),
+          simultaneous_key('semicolon', 'f', 'しゃ'),
+          simultaneous_key('semicolon', 's', 'しゅ'),
+          simultaneous_key('semicolon', 'd', 'しょ'),
+          simultaneous_key('semicolon', 'g', 'しぃ'),
+          simultaneous_key('semicolon', 'a', 'しぇ'),
+          simultaneous_key('semicolon', 'v', 'じゃ'),
+          simultaneous_key('semicolon', 'x', 'じゅ'),
+          simultaneous_key('semicolon', 'c', 'じょ'),
+          simultaneous_key('semicolon', 'b', 'じぃ'),
+          simultaneous_key('semicolon', 'z', 'じぇ'),
+
           simultaneous_key('i', 'r', 'ひゃ'),
           simultaneous_key('i', 'w', 'ひゅ'),
           simultaneous_key('i', 'e', 'ひょ'),
