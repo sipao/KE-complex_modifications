@@ -1,40 +1,13 @@
 {
-  "title": "Change escape key (rev 4)",
+  "title": "Change fn + n/m/o/p' to page_up, page_down, home and end keys",
   "rules": [
     {
-      "description": "Post caps_lock if escape is pressed alone. (rev 2)",
+      "description": "Change fn + n/m/o/p' to page_up, page_down, home and end keys",
       "manipulators": [
         {
           "type": "basic",
           "from": {
-            "key_code": "escape",
-            "modifiers": {
-              "optional": [
-                "any"
-              ]
-            }
-          },
-          "to": [
-            {
-              "key_code": "escape"
-            }
-          ],
-          "to_if_alone": [
-            {
-              "key_code": "caps_lock",
-              "hold_down_milliseconds": 500
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "description": "Change fn+escape to eject.",
-      "manipulators": [
-        {
-          "type": "basic",
-          "from": {
-            "key_code": "escape",
+            "key_code": "n",
             "modifiers": {
               "mandatory": [
                 "fn"
@@ -46,22 +19,17 @@
           },
           "to": [
             {
-              "key_code": "eject"
+              "key_code": "page_up"
             }
           ]
-        }
-      ]
-    },
-    {
-      "description": "Disable escape; Change shift + escape to escape (For avoiding mistyping on the Touch Bar)",
-      "manipulators": [
+        },
         {
           "type": "basic",
           "from": {
-            "key_code": "escape",
+            "key_code": "m",
             "modifiers": {
               "mandatory": [
-                "shift"
+                "fn"
               ],
               "optional": [
                 "any"
@@ -70,18 +38,45 @@
           },
           "to": [
             {
-              "key_code": "escape"
+              "key_code": "page_down"
             }
           ]
         },
         {
           "type": "basic",
           "from": {
-            "key_code": "escape"
+            "key_code": "o",
+            "modifiers": {
+              "mandatory": [
+                "fn"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
           },
           "to": [
             {
-              "key_code": "vk_none"
+              "key_code": "home"
+            }
+          ]
+        },
+        {
+          "type": "basic",
+          "from": {
+            "key_code": "p",
+            "modifiers": {
+              "mandatory": [
+                "fn"
+              ],
+              "optional": [
+                "any"
+              ]
+            }
+          },
+          "to": [
+            {
+              "key_code": "end"
             }
           ]
         }
