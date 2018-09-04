@@ -375,6 +375,10 @@ ROMAN_MAP = {
   '〜' => [key_with_shift('grave_accent_and_tilde')],
   '括' => [key('open_bracket'), key('close_bracket'), key('left_arrow')],
   '鍵' => [key_with_shift('open_bracket'), key_with_shift('close_bracket'), key('left_arrow')],
+  'Enter' => [key('return_or_enter')],
+  'BS' => [key('delete_or_backspace')],
+
+
 }.freeze
 
 ########################################
@@ -387,6 +391,24 @@ def main
         'description' => 'Japanese HoneyPlum US',
         'manipulators' => [
           # シフトありから並べること
+
+          # ------------------------------
+          # Chibiレイアウト
+          simultaneous_key('comma', 'period', 'Enter'),
+          simultaneous_key('c', 'v', 'BS'),
+
+          # ------------------------------
+          # タイプ・アシスト
+          # 
+
+          simultaneous_key('w', 'e', 'だけ'),
+          simultaneous_key('s', 'd', 'でも'),
+          simultaneous_key('d', 'f', 'ませ'),
+          simultaneous_key('x', 'c', 'まで'),
+          simultaneous_key('o', 'p', 'いき'),
+          simultaneous_key('k', 'l', 'くれ'),
+          simultaneous_key('l', 'semicolon', 'あり'),
+          simultaneous_key('comma', 'slash', 'いち'),
 
           # ------------------------------
           # 蜂蜜マトリックス
@@ -412,9 +434,11 @@ def main
           simultaneous_key('', 'z', ''),
 =end
 
-          simultaneous_key('u', 'f', 'ゃ'),
-          simultaneous_key('u', 's', 'ゅ'),
-          simultaneous_key('u', 'd', 'ょ'),
+          simultaneous_key('quote', 's', 'とぅ'),
+          simultaneous_key('quote', 'r', 'ゎ'),
+          simultaneous_key('quote', 't', 'ゐ'),
+          simultaneous_key('quote', 'q', 'ゑ'),
+          simultaneous_key('quote', 'x', 'どぅ'),
 
           simultaneous_key('semicolon', 'f', 'しゃ'),
           simultaneous_key('semicolon', 's', 'しゅ'),
@@ -432,16 +456,53 @@ def main
           simultaneous_key('semicolon', 'b', 'じぃ'),
           simultaneous_key('semicolon', 'z', 'じぇ'),
 
-          simultaneous_key('p', 'r', 'にゃ'),
-          simultaneous_key('p', 'w', 'にゅ'),
-          simultaneous_key('p', 'e', 'にょ'),
-          simultaneous_key('p', 't', 'にぃ'),
-          simultaneous_key('p', 'q', 'にぇ'),
-          simultaneous_key('p', 'f', 'つゃ'),
-          simultaneous_key('p', 's', 'つゅ'),
-          simultaneous_key('p', 'd', 'つょ'),
-          simultaneous_key('p', 'g', 'つぃ'),
-          simultaneous_key('p', 'a', 'つぇ'),
+          simultaneous_key('l', 'd', 'を'),
+          simultaneous_key('l', 'a', 'いぇ'),
+          simultaneous_key('l', 'r', 'くゃ'),
+          simultaneous_key('l', 'w', 'くゎ'),
+          simultaneous_key('l', 'e', 'くょ'),
+          simultaneous_key('l', 't', 'くぃ'),
+          simultaneous_key('l', 'q', 'くぇ'),
+          simultaneous_key('l', 'v', 'ぐゃ'),
+          simultaneous_key('l', 'x', 'ぐゎ'),
+          simultaneous_key('l', 'c', 'ぐょ'),
+          simultaneous_key('l', 'b', 'ぐぃ'),
+          simultaneous_key('l', 'z', 'ぐぇ'),
+
+          simultaneous_key('k', 'f', 'ふゃ'),
+          simultaneous_key('k', 's', 'ふゅ'),
+          simultaneous_key('k', 'd', 'ふょ'),
+          simultaneous_key('k', 'g', 'ふぃ'),
+          simultaneous_key('k', 'a', 'ふぇ'),
+          simultaneous_key('k', 'v', 'ぶゃ'),
+          simultaneous_key('k', 'x', 'ぶゅ'),
+          simultaneous_key('k', 'c', 'ぶょ'),
+          simultaneous_key('k', 'b', 'ぶぃ'),
+          simultaneous_key('k', 'z', 'ぶぇ'),
+
+          simultaneous_key('close_bracket', 'r', 'ぱ'),
+          simultaneous_key('close_bracket', 'w', 'ぷ'),
+          simultaneous_key('close_bracket', 'e', 'ぽ'),
+          simultaneous_key('close_bracket', 't', 'ぴ'),
+          simultaneous_key('close_bracket', 'q', 'ぺ'),
+          simultaneous_key('close_bracket', 'v', 'ぴゃ'),
+          simultaneous_key('close_bracket', 'x', 'ぴゅ'),
+          simultaneous_key('close_bracket', 'c', 'ぴょ'),
+          simultaneous_key('close_bracket', 'b', 'ぴぃ'),
+          simultaneous_key('close_bracket', 'z', 'ぴぇ'),
+          
+          simultaneous_key('open_bracket', 'e', 'ぬぉ'),
+
+          simultaneous_key('p', 'f', 'にゃ'),
+          simultaneous_key('p', 's', 'にゅ'),
+          simultaneous_key('p', 'd', 'にょ'),
+          simultaneous_key('p', 'g', 'にぃ'),
+          simultaneous_key('p', 'a', 'にぇ'),
+          simultaneous_key('p', 'r', 'つゃ'),
+          simultaneous_key('p', 'w', 'つゅ'),
+          simultaneous_key('p', 'e', 'つょ'),
+          simultaneous_key('p', 't', 'つぃ'),
+          simultaneous_key('p', 'q', 'つぇ'),
           simultaneous_key('p', 'v', 'づゃ'),
           simultaneous_key('p', 'x', 'づゅ'),
           simultaneous_key('p', 'c', 'づょ'),
@@ -479,12 +540,39 @@ def main
           simultaneous_key('u', 's', 'ゅ'),
           simultaneous_key('u', 'd', 'ょ'),
 
+          simultaneous_key('slash', 'r', 'ちゃ'),
+          simultaneous_key('slash', 'w', 'ちゅ'),
+          simultaneous_key('slash', 'e', 'ちょ'),
+          simultaneous_key('slash', 't', 'ちぃ'),
+          simultaneous_key('slash', 'q', 'ちぇ'),
+          simultaneous_key('slash', 'v', 'ぢゃ'),
+          simultaneous_key('slash', 'x', 'ぢゅ'),
+          simultaneous_key('slash', 'c', 'ぢょ'),
+          simultaneous_key('slash', 'b', 'ぢぃ'),
+          simultaneous_key('slash', 'z', 'ぢぇ'),
+
+          simultaneous_key('period', 's', 'てゅ'),
+          simultaneous_key('period', 'g', 'てぃ'),
+          simultaneous_key('period', 'x', 'でゅ'),
+          simultaneous_key('period', 'b', 'でぃ'),
+
+          simultaneous_key('comma', 'd', 'うぉ'),
+          simultaneous_key('comma', 'g', 'うぃ'),
+          simultaneous_key('comma', 'a', 'うぇ'),
+          simultaneous_key('comma', 'r', 'ぁ'),
+          simultaneous_key('comma', 'w', 'ぅ'),
+          simultaneous_key('comma', 'e', 'ぉ'),
+          simultaneous_key('comma', 't', 'ぃ'),
+          simultaneous_key('comma', 'q', 'ぇ'),
+          simultaneous_key('comma', 'v', 'ヴぁ'),
+          simultaneous_key('comma', 'x', 'ヴぅ'),
+          simultaneous_key('comma', 'c', 'ヴぉ'),
+          simultaneous_key('comma', 'b', 'ヴぃ'),
+          simultaneous_key('comma', 'z', 'ヴぇ'),
+
           simultaneous_key('m', 'r', 'みゃ'),
           simultaneous_key('m', 'w', 'みゅ'),
           simultaneous_key('m', 'e', 'みょ'),
-
-          # を
-          simultaneous_key('d', 'k', 'を'),
 
           # ------------------------------
           # 左シフト
@@ -597,7 +685,7 @@ def main
           right_shift_key('o', 'き'),
           right_shift_key('p', 'つ'),
           right_shift_key('open_bracket', 'ぬ'),
-          right_shift_key('close_bracket', 'ぴ'),
+          right_shift_key('close_bracket', 'ね'),
           right_shift_key('backslash', '＼'),
 
           # 右中段
