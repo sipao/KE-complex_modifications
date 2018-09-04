@@ -706,7 +706,39 @@ def main
           # ------------------------------
           # 小指シフト
 
-          shift_key('u', 'Y'),
+          # 右最上段
+          shift_key('6', 'equal_sign'),
+          shift_key('7', '6'),
+          shift_key('8', '7'),
+          shift_key('9', '8'),
+          shift_key('0', '9'),
+          shift_key('hyphen', '0'),
+          shift_key('equal_sign', 'hyphen'),
+
+          # 右上段
+          shift_key('y', 'backslash'),
+          shift_key('u', 'y'),
+          shift_key('i', 'u'),
+          shift_key('o', 'i'),
+          shift_key('p', 'o'),
+          shift_key('open_bracket', 'p'),
+          shift_key('close_bracket', 'open_bracket'),
+          shift_key('backslash', 'close_bracket'),
+
+          # 右中段
+          shift_key('h', 'quote'),
+          shift_key('j', 'h'),
+          shift_key('k', 'j'),
+          shift_key('l', 'k'),
+          shift_key('semicolon', 'l'),
+          shift_key('quote', 'semicolon'),
+
+          # 右下段
+          shift_key('n', 'slash'),
+          shift_key('m', 'n'),
+          shift_key('comma', 'm'),
+          shift_key('period', 'comma'),
+          shift_key('slash', 'period'),
 
           # ------------------------------
           # シフトなし
@@ -790,14 +822,14 @@ def normal_key(key, char)
   }
 end
 
-def shift_key(key, char)
+def shift_key(key, shiftkey)
   {
     'type' => 'basic',
     'from' => {
       'key_code' => key,
       'modifiers' => Karabiner.from_modifiers(['shift'], nil),
     },
-    'to' => ROMAN_MAP[char],
+    'to' => [key_with_shift(shiftkey)],
     'conditions' => CONDITIONS,
   }
 end
