@@ -373,8 +373,8 @@ ROMAN_MAP = {
   '、' => [key('comma')],
   '。' => [key('period')],
   '〜' => [key_with_shift('grave_accent_and_tilde')],
-  '括' => [key('open_bracket'), key('close_bracket'), key('left_arrow')],
-  '鍵' => [key_with_shift('open_bracket'), key_with_shift('close_bracket'), key('left_arrow')],
+  '括' => [key_with_shift('9'), key_with_shift('0'), key('left_arrow')],
+  '鍵' => [key('open_bracket'), key('close_bracket'), key('left_arrow')],
   'Enter' => [key('return_or_enter')],
   'BS' => [key('delete_or_backspace')],
 
@@ -707,38 +707,38 @@ def main
           # 小指シフト
 
           # 右最上段
-          shift_key('6', 'equal_sign'),
+          shift_key('6', '='),
           shift_key('7', '6'),
           shift_key('8', '7'),
           shift_key('9', '8'),
           shift_key('0', '9'),
           shift_key('hyphen', '0'),
-          shift_key('equal_sign', 'hyphen'),
+          shift_key('equal_sign', '-'),
 
           # 右上段
-          shift_key('y', 'backslash'),
-          shift_key('u', 'y'),
-          shift_key('i', 'u'),
-          shift_key('o', 'i'),
-          shift_key('p', 'o'),
-          shift_key('open_bracket', 'p'),
-          shift_key('close_bracket', 'open_bracket'),
-          shift_key('backslash', 'close_bracket'),
+          shift_key('y', '鍵'),
+          shift_key('u', 'Y'),
+          shift_key('i', 'U'),
+          shift_key('o', 'I'),
+          shift_key('p', 'O'),
+          shift_key('open_bracket', 'P'),
+          shift_key('close_bracket', '['),
+          shift_key('backslash', ']'),
 
           # 右中段
-          shift_key('h', 'quote'),
-          shift_key('j', 'h'),
-          shift_key('k', 'j'),
-          shift_key('l', 'k'),
-          shift_key('semicolon', 'l'),
-          shift_key('quote', 'semicolon'),
+          shift_key('h', '\''),
+          shift_key('j', 'H'),
+          shift_key('k', 'J'),
+          shift_key('l', 'K'),
+          shift_key('semicolon', 'L'),
+          shift_key('quote', '…'),
 
           # 右下段
-          shift_key('n', 'slash'),
-          shift_key('m', 'n'),
-          shift_key('comma', 'm'),
-          shift_key('period', 'comma'),
-          shift_key('slash', 'period'),
+          shift_key('n', '・'),
+          shift_key('m', 'N'),
+          shift_key('comma', 'M'),
+          shift_key('period', '、'),
+          shift_key('slash', '。'),
 
           # ------------------------------
           # シフトなし
@@ -822,14 +822,14 @@ def normal_key(key, char)
   }
 end
 
-def shift_key(key, shiftkey)
+def shift_key(key, char)
   {
     'type' => 'basic',
     'from' => {
       'key_code' => key,
       'modifiers' => Karabiner.from_modifiers(['shift'], nil),
     },
-    'to' => [key_with_shift(shiftkey)],
+    'to' => ROMAN_MAP[char],
     'conditions' => CONDITIONS,
   }
 end

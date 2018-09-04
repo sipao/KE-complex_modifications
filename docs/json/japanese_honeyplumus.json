@@ -10071,9 +10071,6 @@
           "to": [
             {
               "key_code": "equal_sign",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -10110,9 +10107,6 @@
           "to": [
             {
               "key_code": "6",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -10149,9 +10143,6 @@
           "to": [
             {
               "key_code": "7",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -10188,9 +10179,6 @@
           "to": [
             {
               "key_code": "8",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -10227,9 +10215,6 @@
           "to": [
             {
               "key_code": "9",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -10266,9 +10251,6 @@
           "to": [
             {
               "key_code": "0",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -10305,9 +10287,6 @@
           "to": [
             {
               "key_code": "hyphen",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -10343,10 +10322,15 @@
           },
           "to": [
             {
-              "key_code": "backslash",
-              "modifiers": [
-                "left_shift"
-              ],
+              "key_code": "open_bracket",
+              "repeat": false
+            },
+            {
+              "key_code": "close_bracket",
+              "repeat": false
+            },
+            {
+              "key_code": "left_arrow",
               "repeat": false
             }
           ],
@@ -10579,7 +10563,7 @@
             {
               "key_code": "open_bracket",
               "modifiers": [
-                "left_shift"
+                "left_option"
               ],
               "repeat": false
             }
@@ -10618,7 +10602,7 @@
             {
               "key_code": "close_bracket",
               "modifiers": [
-                "left_shift"
+                "left_option"
               ],
               "repeat": false
             }
@@ -10656,9 +10640,6 @@
           "to": [
             {
               "key_code": "quote",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -10852,7 +10833,7 @@
             {
               "key_code": "semicolon",
               "modifiers": [
-                "left_shift"
+                "left_option"
               ],
               "repeat": false
             }
@@ -10890,9 +10871,6 @@
           "to": [
             {
               "key_code": "slash",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -11007,9 +10985,6 @@
           "to": [
             {
               "key_code": "comma",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -11046,9 +11021,6 @@
           "to": [
             {
               "key_code": "period",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -11971,11 +11943,17 @@
           },
           "to": [
             {
-              "key_code": "open_bracket",
+              "key_code": "9",
+              "modifiers": [
+                "left_shift"
+              ],
               "repeat": false
             },
             {
-              "key_code": "close_bracket",
+              "key_code": "0",
+              "modifiers": [
+                "left_shift"
+              ],
               "repeat": false
             },
             {
