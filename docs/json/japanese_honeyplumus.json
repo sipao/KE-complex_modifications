@@ -10330,6 +10330,10 @@
               "repeat": false
             },
             {
+              "key_code": "return_or_enter",
+              "repeat": false
+            },
+            {
               "key_code": "left_arrow",
               "repeat": false
             }
