@@ -10875,6 +10875,9 @@
           "to": [
             {
               "key_code": "slash",
+              "modifiers": [
+                "left_shift"
+              ],
               "repeat": false
             }
           ],

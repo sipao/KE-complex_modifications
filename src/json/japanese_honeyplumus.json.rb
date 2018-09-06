@@ -734,7 +734,7 @@ def main
           shift_key('quote', '…'),
 
           # 右下段
-          shift_key('n', '・'),
+          shift_key('n', '?'),
           shift_key('m', 'N'),
           shift_key('comma', 'M'),
           shift_key('period', '、'),
