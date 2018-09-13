@@ -377,6 +377,11 @@ ROMAN_MAP = {
   '鍵' => [key('open_bracket'), key('close_bracket'), key('return_or_enter'), key('left_arrow')],
   'Enter' => [key('return_or_enter')],
   'BS' => [key('delete_or_backspace')],
+  '+' => [key_with_shift('equal_sign')],
+  '^' => [key_with_shift('6')],
+  '&' => [key_with_shift('7')],
+  '*' => [key_with_shift('8')],
+  '_' => [key_with_shift('hyphen')],
 
 
 }.freeze
@@ -707,13 +712,13 @@ def main
           # 小指シフト
 
           # 右最上段
-          shift_key('6', '='),
-          shift_key('7', '6'),
-          shift_key('8', '7'),
-          shift_key('9', '8'),
-          shift_key('0', '9'),
-          shift_key('hyphen', '0'),
-          shift_key('equal_sign', '-'),
+          shift_key('6', '+'),
+          shift_key('7', '^'),
+          shift_key('8', '&'),
+          shift_key('9', '*'),
+          shift_key('0', '('),
+          shift_key('hyphen', ')'),
+          shift_key('equal_sign', '_'),
 
           # 右上段
           shift_key('y', '鍵'),

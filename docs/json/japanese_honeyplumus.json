@@ -10055,6 +10055,9 @@
           "to": [
             {
               "key_code": "equal_sign",
+              "modifiers": [
+                "left_shift"
+              ],
               "repeat": false
             }
           ],
@@ -10091,6 +10094,9 @@
           "to": [
             {
               "key_code": "6",
+              "modifiers": [
+                "left_shift"
+              ],
               "repeat": false
             }
           ],
@@ -10127,6 +10133,9 @@
           "to": [
             {
               "key_code": "7",
+              "modifiers": [
+                "left_shift"
+              ],
               "repeat": false
             }
           ],
@@ -10163,6 +10172,9 @@
           "to": [
             {
               "key_code": "8",
+              "modifiers": [
+                "left_shift"
+              ],
               "repeat": false
             }
           ],
@@ -10199,6 +10211,9 @@
           "to": [
             {
               "key_code": "9",
+              "modifiers": [
+                "left_shift"
+              ],
               "repeat": false
             }
           ],
@@ -10235,6 +10250,9 @@
           "to": [
             {
               "key_code": "0",
+              "modifiers": [
+                "left_shift"
+              ],
               "repeat": false
             }
           ],
@@ -10271,6 +10289,9 @@
           "to": [
             {
               "key_code": "hyphen",
+              "modifiers": [
+                "left_shift"
+              ],
               "repeat": false
             }
           ],
