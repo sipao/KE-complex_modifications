@@ -382,6 +382,7 @@ ROMAN_MAP = {
   '&' => [key_with_shift('7')],
   '*' => [key_with_shift('8')],
   '_' => [key_with_shift('hyphen')],
+  ':' => [key_with_shift('semicolon')],
 
 
 }.freeze
@@ -736,7 +737,7 @@ def main
           shift_key('k', 'J'),
           shift_key('l', 'K'),
           shift_key('semicolon', 'L'),
-          shift_key('quote', '…'),
+          shift_key('quote', ':'),
 
           # 右下段
           shift_key('n', '?'),

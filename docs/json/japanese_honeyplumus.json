@@ -10842,7 +10842,7 @@
             {
               "key_code": "semicolon",
               "modifiers": [
-                "left_option"
+                "left_shift"
               ],
               "repeat": false
             }
