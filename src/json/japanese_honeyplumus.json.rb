@@ -367,8 +367,8 @@ ROMAN_MAP = {
   '…' => [key_with_opto('semicolon')],
   '(' => [key_with_shift('9')],
   ')' => [key_with_shift('0')],
-  '「' => [key_with_shift('open_bracket')],
-  '」' => [key_with_shift('close_bracket')],
+  '「' => [key('open_bracket')],
+  '」' => [key('close_bracket')],
   '・' => [key('slash')],
   '、' => [key('comma')],
   '。' => [key('period')],
@@ -588,7 +588,7 @@ def main
           left_shift_key('3', '〜'),
           left_shift_key('4', '「'),
           left_shift_key('5', '」'),
-
+ 
           # 左上段
           left_shift_key('q', 'ぺ'),
           left_shift_key('w', 'け'),

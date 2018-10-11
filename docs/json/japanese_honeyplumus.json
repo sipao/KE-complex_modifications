@@ -6999,9 +6999,6 @@
           "to": [
             {
               "key_code": "open_bracket",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
@@ -7040,9 +7037,6 @@
           "to": [
             {
               "key_code": "close_bracket",
-              "modifiers": [
-                "left_shift"
-              ],
               "repeat": false
             }
           ],
