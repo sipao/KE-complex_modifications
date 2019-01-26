@@ -215,7 +215,7 @@ ROMAN_MAP = {
   'でゅ' => [key('d'), key('e'), key('x'), key('y'), key('u')],
   'でぃ' => [key('d'), key('e'), key('x'), key('i')],
 
-  'うぃ' => [key('u'), key('x'), key('a')],
+  'うぃ' => [key('u'), key('x'), key('i')],
   'うぇ' => [key('u'), key('x'), key('e')],
   'うぉ' => [key('u'), key('x'), key('o')],
   'ヴぁ' => [key('v'), key('u'), key('x'), key('a')],
