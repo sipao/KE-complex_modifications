@@ -19,6 +19,7 @@ require_relative '../lib/karabiner.rb'
 def main
   puts JSON.pretty_generate(
     'title' => 'Mouse Keys Mode v4 (rev 1)',
+    'maintainers' => ['tekezo'],
     'rules' => [
       {
         'description' => 'Mouse Keys Mode v4 (rev 1)',
@@ -90,7 +91,7 @@ def generate_mouse_keys_mode(from_key_code, to, scroll_to, to_after_key_up)
       'type' => 'basic',
       'from' => {
         'key_code' => from_key_code,
-        'modifiers' => Karabiner.from_modifiers(nil, ['any']),
+        'modifiers' => Karabiner.from_modifiers,
       },
       'to' => scroll_to,
       'conditions' => [
@@ -110,7 +111,7 @@ def generate_mouse_keys_mode(from_key_code, to, scroll_to, to_after_key_up)
     'type' => 'basic',
     'from' => {
       'key_code' => from_key_code,
-      'modifiers' => Karabiner.from_modifiers(nil, ['any']),
+      'modifiers' => Karabiner.from_modifiers,
     },
     'to' => to,
     'conditions' => [Karabiner.variable_if('mouse_keys_mode_v4', 1)],
@@ -141,7 +142,7 @@ def generate_mouse_keys_mode(from_key_code, to, scroll_to, to_after_key_up)
           Karabiner.set_variable('mouse_keys_mode_v4_scroll', 0),
         ],
       },
-      'modifiers' => Karabiner.from_modifiers(nil, ['any']),
+      'modifiers' => Karabiner.from_modifiers,
     },
     'to' => [
       Karabiner.set_variable('mouse_keys_mode_v4', 1),

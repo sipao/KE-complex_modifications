@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# frozen_string_literal: true
 
 # You can generate json by executing the following command on Terminal.
 #
@@ -11,143 +12,379 @@ require_relative '../lib/karabiner.rb'
 def main
   puts JSON.pretty_generate(
     'title' => 'Personal rules (@tekezo)',
+    'maintainers' => ['tekezo'],
     'rules' => [
       {
-        'description' => 'Personal rules (@tekezo) (rev 4)',
+        'description' => 'Personal rules (@tekezo) (rev 24)',
         'manipulators' =>
+        core_configuration +
+        mouse +
         control_1234 +
         option_hyphen +
+        media_controls +
         app_virtual_machine +
         app_finder +
         app_terminal +
         app_browser +
         app_activity_monitor +
-        app_adium +
-        app_visual_studio_code +
-        switch_input_source +
-        [
-          # tab
-          {
-            'type' => 'basic',
-            'from' => {
-              'key_code' => 'tab',
-              'modifiers' => Karabiner.from_modifiers(nil, ['any']),
-            },
-            'to' => [
-              {
-                'key_code' => 'left_command',
-              },
-            ],
-            'to_if_alone' => [
-              {
-                'key_code' => 'grave_accent_and_tilde',
-                'modifiers' => ['left_command'],
-              },
-            ],
-          },
-
-          # f18
-          {
-            'type' => 'basic',
-            'from' => {
-              'key_code' => 'f18',
-              'modifiers' => Karabiner.from_modifiers(nil, ['any']),
-            },
-            'to' => [
-              { 'key_code' => 'spacebar' },
-            ],
-          },
-
-          # escape+1,2
-          {
-            'type' => 'basic',
-            'from' => {
-              'simultaneous' => [
-                {
-                  'key_code' => 'escape',
-                },
-                {
-                  'key_code' => '1',
-                },
-              ],
-            },
-            'to' => [
-              {
-                'consumer_key_code' => 'display_brightness_decrement',
-              },
-            ],
-          },
-          {
-            'type' => 'basic',
-            'from' => {
-              'simultaneous' => [
-                {
-                  'key_code' => 'escape',
-                },
-                {
-                  'key_code' => '2',
-                },
-              ],
-            },
-            'to' => [
-              {
-                'consumer_key_code' => 'display_brightness_increment',
-              },
-            ],
-          },
-
-          # right_command (virtual_machine)
-          {
-            'type' => 'basic',
-            'from' => {
-              'key_code' => 'right_command',
-              'modifiers' => Karabiner.from_modifiers(nil, ['any']),
-            },
-            'to' => [
-              {
-                'key_code' => 'right_control',
-                'lazy' => true,
-              },
-            ],
-            'conditions' => [
-              Karabiner.frontmost_application_if(%w[remote_desktop virtual_machine]),
-            ],
-          },
-
-          # right_command
-          {
-            'type' => 'basic',
-            'from' => {
-              'key_code' => 'right_command',
-              'modifiers' => Karabiner.from_modifiers(nil, ['any']),
-            },
-            'to' => [
-              {
-                'key_code' => 'right_command',
-                'lazy' => true,
-              },
-            ],
-          },
-
-          # left_command
-          # (Change left_command to lazy left_control to suppress single control key press at Emacs key bindings on Alfred)
-          {
-            'type' => 'basic',
-            'from' => {
-              'key_code' => 'left_command',
-              'modifiers' => Karabiner.from_modifiers(nil, ['any']),
-            },
-            'to' => [
-              {
-                'key_code' => 'left_control',
-                'lazy' => true,
-              },
-            ],
-          },
-        ],
+        app_microsoft_office +
+        app_visual_studio_code,
       },
     ]
   )
+end
+
+def core_configuration
+  [
+    ########################################
+    # right_command
+    ########################################
+
+    #
+    # virtual_machine
+    #
+
+    # left_control + right_command -> input switch
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'right_command',
+        'modifiers' => Karabiner.from_modifiers(['left_control']),
+      },
+      'to' => [
+        {
+          'key_code' => 'right_control',
+          'modifiers' => ['left_control'],
+          'lazy' => true,
+        },
+      ],
+      'to_if_alone' => [
+        {
+          'key_code' => 'grave_accent_and_tilde',
+          'modifiers' => ['left_option'],
+        },
+      ],
+      'conditions' => [
+        Karabiner.frontmost_application_if(%w[remote_desktop virtual_machine]),
+      ],
+      'parameters' => {
+        'basic.to_if_alone_timeout_milliseconds' => 250,
+      },
+    },
+
+    # right_command (virtual_machine)
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'right_command',
+        'modifiers' => Karabiner.from_modifiers,
+      },
+      'to' => [
+        {
+          'key_code' => 'right_control',
+          'lazy' => true,
+        },
+      ],
+      'conditions' => [
+        Karabiner.frontmost_application_if(%w[remote_desktop virtual_machine]),
+      ],
+    },
+
+    #
+    # except virtual_machine
+    #
+
+    # left_control + right_command -> input switch
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'right_command',
+        'modifiers' => Karabiner.from_modifiers(['left_control']),
+      },
+      'to' => [
+        {
+          'key_code' => 'right_command',
+          'modifiers' => ['left_control'],
+          'lazy' => true,
+        },
+      ],
+      'to_if_alone' => [
+        {
+          'key_code' => 'lang2',
+        },
+      ],
+      'parameters' => {
+        'basic.to_if_alone_timeout_milliseconds' => 250,
+      },
+    },
+
+    # right_command (lazy)
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'right_command',
+        'modifiers' => Karabiner.from_modifiers,
+      },
+      'to' => [
+        {
+          'key_code' => 'right_command',
+          'lazy' => true,
+        },
+      ],
+    },
+
+    ########################################
+    # left_command
+    ########################################
+
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'left_command',
+        'modifiers' => Karabiner.from_modifiers,
+      },
+      'to' => [
+        {
+          'key_code' => 'left_control',
+          'lazy' => true,
+        },
+      ],
+    },
+
+    ########################################
+    # right_option
+    ########################################
+
+    # virtual_machine
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'right_option',
+        'modifiers' => Karabiner.from_modifiers(['left_control']),
+      },
+      'to' => [
+        {
+          'key_code' => 'right_option',
+          'modifiers' => ['left_control'],
+          'lazy' => true,
+        },
+      ],
+      'to_if_alone' => [
+        {
+          'key_code' => 'grave_accent_and_tilde',
+          'modifiers' => ['left_option'],
+        },
+      ],
+      'conditions' => [
+        Karabiner.frontmost_application_if(%w[remote_desktop virtual_machine]),
+      ],
+      'parameters' => {
+        'basic.to_if_alone_timeout_milliseconds' => 250,
+      },
+    },
+
+    # except virtual_machine
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'right_option',
+        'modifiers' => Karabiner.from_modifiers(['left_control']),
+      },
+      'to' => [
+        {
+          'key_code' => 'right_option',
+          'modifiers' => ['left_control'],
+          'lazy' => true,
+        },
+      ],
+      'to_if_alone' => [
+        {
+          'key_code' => 'lang1',
+        },
+      ],
+      'parameters' => {
+        'basic.to_if_alone_timeout_milliseconds' => 250,
+      },
+    },
+
+    ########################################
+    # spacebar
+    ########################################
+
+    # right_command+spacebar
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'spacebar',
+        'modifiers' => Karabiner.from_modifiers(['right_command']),
+      },
+      'to' => [
+        {
+          'key_code' => 'left_shift',
+          'modifiers' => ['right_command'],
+        },
+      ],
+      'to_if_alone' => [
+        {
+          'key_code' => 'grave_accent_and_tilde',
+          'modifiers' => ['left_command'],
+        },
+      ],
+      'parameters' => {
+        'basic.to_if_alone_timeout_milliseconds' => 250,
+      },
+    },
+
+    # spacebar
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'spacebar',
+        'modifiers' => Karabiner.from_modifiers,
+      },
+      'to' => [
+        {
+          'key_code' => 'left_shift',
+        },
+      ],
+      'to_if_alone' => [
+        {
+          'key_code' => 'spacebar',
+        },
+      ],
+      'parameters' => {
+        'basic.to_if_alone_timeout_milliseconds' => 250,
+      },
+    },
+
+    ########################################
+    # control + command
+    ########################################
+
+    # command+control+f -> command+shift+[
+    # command+control+j -> command+shift+]
+    # command+control+g -> command+[
+    # command+control+h -> command+]
+
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'f',
+        'modifiers' => Karabiner.from_modifiers(%w[control command]),
+      },
+      'to' => [
+        {
+          'key_code' => 'open_bracket',
+          'modifiers' => %w[
+            command left_shift
+          ],
+        },
+      ],
+    },
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'j',
+        'modifiers' => Karabiner.from_modifiers(%w[control command]),
+      },
+      'to' => [
+        {
+          'key_code' => 'close_bracket',
+          'modifiers' => %w[
+            command left_shift
+          ],
+        },
+      ],
+    },
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'g',
+        'modifiers' => Karabiner.from_modifiers(%w[control command]),
+      },
+      'to' => [
+        {
+          'key_code' => 'open_bracket',
+          'modifiers' => %w[
+            command
+          ],
+        },
+      ],
+    },
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'h',
+        'modifiers' => Karabiner.from_modifiers(%w[control command]),
+      },
+      'to' => [
+        {
+          'key_code' => 'close_bracket',
+          'modifiers' => %w[
+            command
+          ],
+        },
+      ],
+    },
+  ]
+end
+
+def mouse
+  [
+    # mouse_motion_to_scroll (button5)
+    {
+      'type' => 'basic',
+      'from' => {
+        'pointing_button' => 'button5',
+        'modifiers' => {
+          'optional' => [
+            'any',
+          ],
+        },
+      },
+      'to' => [
+        Karabiner.set_variable('personal_tekezo_enable_mouse_motion_to_scroll', 1),
+      ],
+      'to_after_key_up' => [
+        Karabiner.set_variable('personal_tekezo_enable_mouse_motion_to_scroll', 0),
+      ],
+      'to_if_alone' => [
+        {
+          'pointing_button' => 'button1',
+          'modifiers' => ['left_command'],
+        },
+      ],
+      'parameters' => {
+        'basic.to_if_alone_timeout_milliseconds' => 250,
+      },
+    },
+    {
+      'type' => 'mouse_motion_to_scroll',
+      'from' => {
+        'modifiers' => {
+          'optional' => [
+            'any',
+          ],
+        },
+      },
+      'conditions' => [
+        Karabiner.variable_if('personal_tekezo_enable_mouse_motion_to_scroll', 1),
+      ],
+    },
+    # button6 -> command + click
+    {
+      'type' => 'basic',
+      'from' => {
+        'pointing_button' => 'button6',
+      },
+      'to' => [
+        {
+          'pointing_button' => 'button1',
+          'modifiers' => ['left_command'],
+        },
+      ],
+    },
+  ]
 end
 
 def control_1234
@@ -233,6 +470,57 @@ def option_hyphen
           'key_code' => 'equal_sign',
           'repeat' => false,
         },
+      ],
+    },
+  ]
+end
+
+def media_controls
+  # Change fn+page_up,page_down to brightness control
+  # Change page_up,page_down to volume control
+  [
+    # fn+page_down
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'page_down',
+        'modifiers' => Karabiner.from_modifiers(['fn'], ['any']),
+      },
+      'to' => [
+        { 'consumer_key_code' => 'display_brightness_decrement' },
+      ],
+    },
+    # fn+page_up
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'page_up',
+        'modifiers' => Karabiner.from_modifiers(['fn'], ['any']),
+      },
+      'to' => [
+        { 'consumer_key_code' => 'display_brightness_increment' },
+      ],
+    },
+    # page_down
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'page_down',
+        'modifiers' => Karabiner.from_modifiers([], ['any']),
+      },
+      'to' => [
+        { 'consumer_key_code' => 'volume_decrement' },
+      ],
+    },
+    # page_up
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'page_up',
+        'modifiers' => Karabiner.from_modifiers([], ['any']),
+      },
+      'to' => [
+        { 'consumer_key_code' => 'volume_increment' },
       ],
     },
   ]
@@ -377,43 +665,52 @@ end
 
 def app_terminal
   [
+    # Disable command+o
     {
       'type' => 'basic',
       'from' => {
         'key_code' => 'o',
-        'modifiers' => Karabiner.from_modifiers(['command'], ['any']),
+        'modifiers' => Karabiner.from_modifiers(['command']),
       },
       'conditions' => [
         Karabiner.frontmost_application_if(['terminal']),
       ],
     },
+    # Disable command+f
     {
       'type' => 'basic',
       'from' => {
         'key_code' => 'f',
-        'modifiers' => Karabiner.from_modifiers(['command'], ['any']),
+        'modifiers' => Karabiner.from_modifiers(['command']),
       },
       'conditions' => [
         Karabiner.frontmost_application_if(['terminal']),
       ],
     },
+    # Disable command+w
     {
       'type' => 'basic',
       'from' => {
-        'key_code' => 'f19',
-        'modifiers' => Karabiner.from_modifiers(nil, ['caps_lock']),
+        'key_code' => 'w',
+        'modifiers' => Karabiner.from_modifiers(['command']),
       },
-      'to' => [
-        {
-          'key_code' => 'u',
-          'modifiers' => ['left_control'],
-        },
-        { 'key_code' => 'e' },
-        { 'key_code' => 'x' },
-        { 'key_code' => 'i' },
-        { 'key_code' => 't' },
-        { 'key_code' => 'return_or_enter' },
+      'conditions' => [
+        Karabiner.frontmost_application_if(['terminal']),
       ],
+    },
+    # Change command+t to option+t
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 't',
+        'modifiers' => Karabiner.from_modifiers(['command']),
+      },
+      'to' => {
+        'key_code' => 't',
+        'modifiers' => [
+          'left_option',
+        ]
+      },
       'conditions' => [
         Karabiner.frontmost_application_if(['terminal']),
       ],
@@ -423,6 +720,29 @@ end
 
 def app_browser
   [
+    # Disable command+d (bookmark this tab @ Google Chrome)
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'd',
+        'modifiers' => Karabiner.from_modifiers(['command'], ['caps_lock']),
+      },
+      'conditions' => [
+        Karabiner.frontmost_application_if(['browser']),
+      ],
+    },
+    # Disable command+shift+d (bookmark all tabs @ Google Chrome)
+    {
+      'type' => 'basic',
+      'from' => {
+        'key_code' => 'd',
+        'modifiers' => Karabiner.from_modifiers(%w[command shift], ['caps_lock']),
+      },
+      'conditions' => [
+        Karabiner.frontmost_application_if(['browser']),
+      ],
+    },
+    # Disable command+shift+i (share email link @ Google Chrome)
     {
       'type' => 'basic',
       'from' => {
@@ -433,6 +753,7 @@ def app_browser
         Karabiner.frontmost_application_if(['browser']),
       ],
     },
+    # Change control+a,e to command+arrow keys
     {
       'type' => 'basic',
       'from' => {
@@ -483,16 +804,24 @@ def app_activity_monitor
   ]
 end
 
-def app_adium
+def app_microsoft_office
   [
     {
       'type' => 'basic',
       'from' => {
-        'key_code' => 'w',
+        'key_code' => 'e',
         'modifiers' => Karabiner.from_modifiers(['command'], ['caps_lock']),
       },
+      'to' => {
+        'key_code' => 'f2',
+      },
       'conditions' => [
-        Karabiner.frontmost_application_if(['adium']),
+        {
+          'type' => 'frontmost_application_if',
+          'bundle_identifiers' => [
+            '^com\.microsoft\.Excel$',
+          ],
+        },
       ],
     },
   ]
@@ -500,6 +829,7 @@ end
 
 def app_visual_studio_code
   [
+    # option+n -> control+page_down
     {
       'type' => 'basic',
       'from' => {
@@ -516,6 +846,7 @@ def app_visual_studio_code
         Karabiner.frontmost_application_if(['visual_studio_code']),
       ],
     },
+    # option+p -> control+page_up
     {
       'type' => 'basic',
       'from' => {
@@ -532,64 +863,15 @@ def app_visual_studio_code
         Karabiner.frontmost_application_if(['visual_studio_code']),
       ],
     },
-  ]
-end
-
-def switch_input_source
-  [
-    # virtual machine
+    # disable control+t
     {
       'type' => 'basic',
       'from' => {
-        'key_code' => '1',
-        'modifiers' => Karabiner.from_modifiers(%w[left_control right_control], %w[caps_lock]),
+        'key_code' => 't',
+        'modifiers' => Karabiner.from_modifiers(['control'], ['caps_lock']),
       },
-      'to' => [
-        {
-          'key_code' => 'grave_accent_and_tilde',
-          'modifiers' => ['left_option'],
-        },
-      ],
       'conditions' => [
-        Karabiner.frontmost_application_if(%w[remote_desktop virtual_machine]),
-      ],
-    },
-    {
-      'type' => 'basic',
-      'from' => {
-        'key_code' => '2',
-        'modifiers' => Karabiner.from_modifiers(%w[left_control right_control], %w[caps_lock]),
-      },
-      'to' => [
-        {
-          'key_code' => 'grave_accent_and_tilde',
-          'modifiers' => ['left_option'],
-        },
-      ],
-      'conditions' => [
-        Karabiner.frontmost_application_if(%w[remote_desktop virtual_machine]),
-      ],
-    },
-
-    # common apps
-    {
-      'type' => 'basic',
-      'from' => {
-        'key_code' => '1',
-        'modifiers' => Karabiner.from_modifiers(%w[left_control right_command], %w[caps_lock]),
-      },
-      'to' => [
-        { 'key_code' => 'lang2' },
-      ],
-    },
-    {
-      'type' => 'basic',
-      'from' => {
-        'key_code' => '2',
-        'modifiers' => Karabiner.from_modifiers(%w[left_control right_command], %w[caps_lock]),
-      },
-      'to' => [
-        { 'key_code' => 'lang1' },
+        Karabiner.frontmost_application_if(['visual_studio_code']),
       ],
     },
   ]

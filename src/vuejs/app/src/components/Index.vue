@@ -22,18 +22,11 @@
 
       <b-row align-h="center">
         <b-col md="6">
-          <b-form @submit="search">
-            <b-input-group>
-              <b-form-input v-model="searchQuery"
-                            :disabled="lunrIndex === null"
-                            :placeholder="(lunrIndex ? 'Search keywords...' : 'Fetching data...')">
-              </b-form-input>
-              <b-input-group-append>
-                <b-btn type="submit"
-                       variant="primary">Search</b-btn>
-              </b-input-group-append>
-            </b-input-group>
-          </b-form>
+          <search-form @submit="search"
+                       ref="searchForm"
+                       :disabled="lunrIndex === null"
+                       :placeholder="(lunrIndex ? 'Search keywords...' : 'Fetching data...')">
+          </search-form>
         </b-col>
       </b-row>
     </div>
@@ -50,6 +43,7 @@
                    class="float-right">{{ group.files.length }}</b-badge>
         </b-list-group-item>
       </b-list-group>
+
       <div style="margin-top: 1rem; margin-bottom: 3rem">
         <div v-if="allFilesExpanded">
           <b-btn variant="secondary"
@@ -60,6 +54,7 @@
                  @click="setAllFileCollapsed(false)">Expand All</b-btn>
         </div>
       </div>
+
       <div class="card-outer"
            v-for="group in filteredGroups"
            :key="group.id"
@@ -85,6 +80,20 @@
                       <icon name="caret-square-down"></icon>
                     </span>
                     {{ file.title }}
+
+                    <div v-if="file.maintainers"
+                         class="rule-maintainer">
+                      <span class="rule-maintainer-header">
+                        Maintained by
+                      </span>
+                      <span class="rule-maintainer-body">
+                        <span v-for="m in file.maintainers"
+                              :key="m">
+                          @<a :href="'https://github.com/' + m"
+                             target="_blank">{{ m }}</a>
+                        </span>
+                      </span>
+                    </div>
                   </span>
 
                   <div class="float-right">
@@ -96,12 +105,32 @@
                       <b-dropdown-item-button @click="importJson(file.importUrl)">Import to Karabiner-Elements</b-dropdown-item-button>
                       <b-dropdown-divider></b-dropdown-divider>
                       <b-dropdown-item-button @click="showJsonModal(file.id)">
-                        <small>Show json</small>
+                        <small>
+                          <icon name="regular/comment-alt"></icon>
+                          Show JSON
+                        </small>
                       </b-dropdown-item-button>
                       <b-dropdown-item-button v-clipboard:copy="pageUrl + '#' + file.id"
                                               v-clipboard:success="urlCopied"
                                               v-clipboard:error="urlCopyFailed">
-                        <small>Copy URL</small>
+                        <small>
+                          <icon name="regular/clipboard"></icon>
+                          Copy URL
+                        </small>
+                      </b-dropdown-item-button>
+                      <b-dropdown-item-button v-clipboard:copy="pageUrl + file.jsonUrl"
+                                              v-clipboard:success="urlCopied"
+                                              v-clipboard:error="urlCopyFailed">
+                        <small>
+                          <icon name="regular/clipboard"></icon>
+                          Copy JSON URL
+                        </small>
+                      </b-dropdown-item-button>
+                      <b-dropdown-item-button @click="editJson(file.id)">
+                        <small>
+                          <icon name="regular/edit"></icon>
+                          Edit JSON (Open external site)
+                        </small>
                       </b-dropdown-item-button>
                     </b-dropdown>
                   </div>
@@ -112,10 +141,18 @@
                     <b-list-group-item v-for="rule in file.rules"
                                        :key="rule.id">
                       {{ rule.description }}
+                      <div v-if="rule.availableSince"
+                           class="rule-available-since">
+                        Karabiner-Elements {{ rule.availableSince }} or later
+                      </div>
                     </b-list-group-item>
-                    <b-list-group-item v-if="file.extraDescription"
-                                       v-html="file.extraDescription">
-                    </b-list-group-item>
+                    <template v-if="file.extraDescriptionPath">
+                      <b-list-group-item>
+                        <iframe :id="file.id + '-extra-description'"
+                                :src="'build/' + file.extraDescriptionPath">
+                        </iframe>
+                      </b-list-group-item>
+                    </template>
                   </b-list-group>
                 </b-collapse>
               </b-card>
@@ -141,9 +178,10 @@
 </template><script>
 import axios from 'axios'
 import lunr from 'lunr'
-import striptags from 'striptags'
 import { Socket } from 'vue-loading-spinner'
-const VueScrollTo = require('vue-scrollto')
+import VueScrollTo from 'vue-scrollto'
+import SearchForm from './SearchForm.vue'
+import iFrameResize from 'iframe-resizer/js/iframeResizer'
 
 const getFileName = path => {
   let name = path.substring(path.lastIndexOf('/') + 1)
@@ -159,6 +197,7 @@ class Rule {
   constructor(ruleIndex, ruleJson) {
     this.id = ruleIndex
     this.description = ruleJson.description
+    this.availableSince = ruleJson.available_since
   }
 }
 
@@ -167,12 +206,14 @@ class File {
     this.id = getFileName(fileJson.path)
     this.jsonUrl = fileJson.path
     this.importUrl = this.makeJsonUrl(fileJson.path)
-    this.extraDescription = fileJson.extra_description
+    this.extraDescriptionPath = fileJson.extra_description_path
+    this.extraDescriptionText = fileJson.extra_description_text
     this.title = fileJson.json.title
+    this.maintainers = fileJson.json.maintainers
     this.rules = []
-    for (const ruleIndex in fileJson.json.rules) {
-      this.rules.push(new Rule(ruleIndex, fileJson.json.rules[ruleIndex]))
-    }
+    fileJson.json.rules.forEach((r, ruleIndex) => {
+      this.rules.push(new Rule(ruleIndex, r))
+    })
   }
 
   makeJsonUrl(path) {
@@ -190,16 +231,18 @@ class Group {
     this.id = groupJson.id
     this.name = groupJson.name
     this.files = []
-    for (const fileJson of groupJson.files) {
+
+    groupJson.files.forEach(fileJson => {
       this.files.push(new File(fileJson))
-    }
+    })
   }
 }
 
 export default {
   name: 'Index',
   components: {
-    Socket
+    Socket,
+    SearchForm
   },
   data() {
     return {
@@ -212,8 +255,8 @@ export default {
       fileCollapsed: {},
       showJsonModalTitle: '',
       showJsonModalBody: '',
-      searchQuery: '',
-      lunrIndex: null
+      lunrIndex: null,
+      iFrameResizers: {}
     }
   },
   created() {
@@ -228,67 +271,80 @@ export default {
       return base
     },
 
-    fetchData() {
-      const self = this
+    urlSearchQuery() {
+      return new URLSearchParams(location.search).get('q')
+    },
 
+    fetchData() {
       axios
-        .get('dist.json')
-        .then(function(response) {
-          let type = self.fileName(window.location.pathname)
+        .get('build/dist.json', {
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        })
+        .then(response => {
+          let type = this.fileName(window.location.pathname)
           if (type === '') {
             type = 'index'
           }
 
-          for (const groupJson of response.data[type]) {
-            self.groups.push(new Group(groupJson))
+          response.data[type].forEach(groupJson => {
+            this.groups.push(new Group(groupJson))
+          })
+
+          this.filteredGroups = this.groups
+
+          this.updateLoadingState()
+          this.makeLunrIndex()
+          this.makeIFrameResizer()
+          this.setAllFileCollapsed(true)
+          this.scrollToHash()
+
+          const q = this.urlSearchQuery()
+          if (q !== null) {
+            this.$refs.searchForm.setSearchQuery(q)
           }
-
-          self.filteredGroups = self.groups
-
-          self.updateLoadingState()
-          self.makeLunrIndex()
-          self.setAllFileCollapsed(true)
-          self.scrollToHash()
-        })
-        .catch(function(error) {
-          console.log(error)
         })
     },
 
     updateLoadingState() {
-      const self = this
       setTimeout(() => {
-        self.loading = false
+        this.loading = false
       }, 500)
     },
 
     makeLunrIndex() {
-      const self = this
+      this.lunrIndex = lunr(l => {
+        l.ref('fileId')
+        l.field('title', { boost: 2 })
+        l.field('text')
 
-      this.lunrIndex = lunr(function() {
-        this.ref('fileId')
-        this.field('text')
-
-        for (const g of self.groups) {
-          for (const f of g.files) {
-            let text = f.title + ' '
-            for (const r of f.rules) {
-              text += r.description + ' '
+        this.groups.forEach(g => {
+          g.files.forEach(f => {
+            let text = ''
+            if (f.maintainers !== undefined) {
+              f.maintainers.forEach(m => {
+                text += m + ' '
+              })
             }
-            text += striptags(f.extraDescription) + ' '
+            f.rules.forEach(r => {
+              text += r.description + ' '
+            })
+            text += f.extraDescriptionText + ' '
 
-            this.add({
+            l.add({
               fileId: f.id,
+              title: f.title,
               text: text.toLowerCase()
             })
-          }
-        }
+          })
+        })
       })
     },
 
     updateAllFilesExpanded() {
       this.allFilesExpanded = true
-      for (const v of Object.values(this.fileCollapsed)) {
+      for (let v of Object.values(this.fileCollapsed)) {
         if (v) {
           this.allFilesExpanded = false
           return
@@ -299,11 +355,13 @@ export default {
     setAllFileCollapsed(value) {
       let fileCollapsed = {}
 
-      for (const g of this.groups) {
-        for (const f of g.files) {
+      this.groups.forEach(g => {
+        g.files.forEach(f => {
           fileCollapsed[f.id] = value
-        }
-      }
+
+          this.makeIFrameResizer(f.id)
+        })
+      })
 
       this.fileCollapsed = fileCollapsed
 
@@ -314,7 +372,18 @@ export default {
       const currentValue = this.fileCollapsed[fileId]
       this.$set(this.fileCollapsed, fileId, !currentValue)
 
+      this.makeIFrameResizer(fileId)
+
       this.updateAllFilesExpanded()
+    },
+
+    makeIFrameResizer(fileId) {
+      this.iFrameResizers[fileId] = iFrameResize(
+        {
+          heightCalculationMethod: 'lowestElement'
+        },
+        '#' + fileId + '-extra-description'
+      )
     },
 
     importJson(url) {
@@ -322,16 +391,31 @@ export default {
     },
 
     showJsonModal(fileId) {
-      for (const g of this.groups) {
-        for (const f of g.files) {
+      for (let g of this.groups) {
+        for (let f of g.files) {
           if (f.id == fileId) {
             this.showJsonModalTitle = f.title
             this.showJsonModalBody = 'Loading...'
             this.$refs.showJsonModalRef.show()
 
-            const self = this
-            axios.get(f.jsonUrl).then(function(response) {
-              self.showJsonModalBody = JSON.stringify(response.data, null, 2)
+            axios.get(f.jsonUrl).then(response => {
+              this.showJsonModalBody = JSON.stringify(response.data, null, 2)
+            })
+
+            return
+          }
+        }
+      }
+    },
+    editJson(fileId) {
+      for (let g of this.groups) {
+        for (let f of g.files) {
+          if (f.id == fileId) {
+            axios.get(f.jsonUrl).then(response => {
+              const url =
+                'https://genesy.github.io/karabiner-complex-rules-generator/#'
+              const base64string = window.btoa(JSON.stringify(response.data))
+              window.open(url + base64string)
             })
 
             return
@@ -353,9 +437,7 @@ export default {
         return
       }
 
-      const self = this
-
-      setTimeout(function() {
+      setTimeout(() => {
         const elementId = window.location.hash.substring(1)
         const element = document.getElementById(elementId)
         if (!element) {
@@ -363,21 +445,36 @@ export default {
         }
 
         scrollToHashTriggered = true
-        self.$set(self.fileCollapsed, elementId, false)
+        this.$set(this.fileCollapsed, elementId, false)
+        this.makeIFrameResizer(elementId)
         VueScrollTo.scrollTo(element, 500, {
           offset: -100
         })
       }, 500)
     },
 
-    search(e) {
-      e.preventDefault()
+    search(searchQuery) {
+      //
+      // Set history
+      //
+
+      if (searchQuery !== this.urlSearchQuery()) {
+        window.history.pushState(
+          { q: searchQuery },
+          '',
+          '?q=' + encodeURIComponent(searchQuery)
+        )
+      }
+
+      //
+      // Search
+      //
 
       if (this.lunrIndex === null) {
         return
       }
 
-      if (!this.searchQuery) {
+      if (!searchQuery) {
         this.filteredGroups = this.groups
         return
       }
@@ -389,9 +486,8 @@ export default {
       })
       let filteredGroups = [group]
 
-      const self = this
-      const results = this.lunrIndex.query(function(q) {
-        lunr.tokenizer(self.searchQuery.toLowerCase()).forEach(function(token) {
+      const results = this.lunrIndex.query(q => {
+        lunr.tokenizer(searchQuery.toLowerCase()).forEach(token => {
           const queryString = token.toString()
           q.term(queryString, {
             boost: 100
@@ -407,19 +503,21 @@ export default {
         })
       })
 
-      for (const r of results) {
+      results.forEach(r => {
         const fileId = r.ref
 
-        for (const g of this.groups) {
-          for (const f of g.files) {
+        this.groups.forEach(g => {
+          g.files.forEach(f => {
             if (f.id == fileId) {
               group.files.push(f)
             }
-          }
-        }
-      }
+          })
+        })
+      })
 
       this.filteredGroups = filteredGroups
+
+      window.scrollTo(0, 0)
     }
   }
 }
@@ -462,14 +560,49 @@ export default {
         &:hover {
           text-decoration: underline;
         }
+
+        .rule-maintainer {
+          display: block;
+          float: right;
+          border-width: 1px;
+          border-style: solid;
+          border-color: gray;
+          border-radius: 5px;
+          padding: 0 3px 0 3px;
+
+          .rule-maintainer-header {
+            font-size: 12px;
+          }
+
+          .rule-maintainer-body {
+            font-size: 14px;
+          }
+        }
+      }
+
+      .rule-available-since {
+        display: block;
+        float: right;
+        border-width: 1px;
+        border-style: solid;
+        border-color: gray;
+        border-radius: 5px;
+        padding: 0 3px 0 3px;
+        font-size: 14px;
+      }
+
+      iframe {
+        width: 1px;
+        min-width: 100%;
+        border: none;
       }
     }
   }
+}
 
-  .show-json-modal-body {
-    white-space: pre-wrap;
-    height: 50vh;
-    overflow: auto;
-  }
+.show-json-modal-body {
+  white-space: pre-wrap;
+  height: 50vh;
+  overflow: auto;
 }
 </style>

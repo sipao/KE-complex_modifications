@@ -1,11 +1,11 @@
 all:
 	bash scripts/update-json.sh
-	(cd docs && ruby ../scripts/make-distjs.rb > dist.json)
+	ruby scripts/lint-groups.rb
+	bash scripts/update-public-build.sh
 
 rebuild:
 	touch src/json/*
 	$(MAKE) all
-	scripts/apply-lint.sh
 
 server:
 	ruby scripts/dev-server.rb

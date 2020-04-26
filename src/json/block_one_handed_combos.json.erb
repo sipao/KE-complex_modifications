@@ -1,10 +1,11 @@
 {
-    "title": "Force the user to make key combination with two hands",
+    "title": "Force the user to make key combination with two hands (rev 2)",
     "rules": [
         {
-            "description": "Block left-handed command + left-handed key",
+            "description": "Block left-handed command + left-handed key (rev 2)",
             "manipulators": [
                 { "type": "basic", "from": <%= from("q", ["left_command"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
+                { "type": "basic", "from": <%= from("w", ["left_command"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("e", ["left_command"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("r", ["left_command"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("t", ["left_command"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
@@ -26,9 +27,10 @@
             ]
         },
         {
-            "description": "Block left-handed shift + left-handed key",
+            "description": "Block left-handed shift + left-handed key (rev 2)",
             "manipulators": [
                 { "type": "basic", "from": <%= from("q", ["left_shift"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
+                { "type": "basic", "from": <%= from("w", ["left_shift"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("e", ["left_shift"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("r", ["left_shift"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("t", ["left_shift"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
@@ -50,9 +52,10 @@
             ]
         },
         {
-            "description": "Block left-handed option + left-handed key",
+            "description": "Block left-handed option + left-handed key (rev 2)",
             "manipulators": [
                 { "type": "basic", "from": <%= from("q", ["left_option"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
+                { "type": "basic", "from": <%= from("w", ["left_option"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("e", ["left_option"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("r", ["left_option"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("t", ["left_option"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
@@ -74,9 +77,10 @@
             ]
         },
         {
-            "description": "Block left-handed control + left-handed key",
+            "description": "Block left-handed control + left-handed key (rev 2)",
             "manipulators": [
                 { "type": "basic", "from": <%= from("q", ["left_control"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
+                { "type": "basic", "from": <%= from("w", ["left_control"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("e", ["left_control"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("r", ["left_control"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("t", ["left_control"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
@@ -98,7 +102,7 @@
             ]
         },
         {
-            "description": "Block right-handed command + right-handed key",
+            "description": "Block right-handed command + right-handed key (rev 1)",
             "manipulators": [
                 { "type": "basic", "from": <%= from("y", ["right_command"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("u", ["right_command"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
@@ -123,7 +127,7 @@
             ]
         },
         {
-            "description": "Block right-handed shift + right-handed key",
+            "description": "Block right-handed shift + right-handed key (rev 1)",
             "manipulators": [
                 { "type": "basic", "from": <%= from("y", ["right_shift"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("u", ["right_shift"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
@@ -148,7 +152,7 @@
             ]
         },
         {
-            "description": "Block right-handed option + right-handed key",
+            "description": "Block right-handed option + right-handed key (rev 1)",
             "manipulators": [
                 { "type": "basic", "from": <%= from("y", ["right_option"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("u", ["right_option"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
@@ -173,7 +177,7 @@
             ]
         },
         {
-            "description": "Block right-handed control + right-handed key",
+            "description": "Block right-handed control + right-handed key (rev 1)",
             "manipulators": [
                 { "type": "basic", "from": <%= from("y", ["right_control"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },
                 { "type": "basic", "from": <%= from("u", ["right_control"], ["any"]) %>, "to": <%= to([["vk_none" ]]) %> },

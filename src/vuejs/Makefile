@@ -1,11 +1,20 @@
-all: build copy
+all: install build copy
+
+serve:
+	cd app && npm run serve
+
+install:
+	cd app && npm install
+	cp app/node_modules/iframe-resizer/js/iframeResizer.contentWindow.min.js app/public/vendor/js
+	cp app/node_modules/bootstrap/dist/css/bootstrap.min.css app/public/vendor/css
 
 build:
-	docker exec -ti vuejs_ke_complex_modifications_1 npm run build
+	cd app && npm run build
 
 copy:
 	rsync -a --delete \
 		app/dist/index.html \
-		app/dist/js \
 		app/dist/css \
-		../../docs/
+		app/dist/js \
+		app/dist/vendor \
+		../../public/

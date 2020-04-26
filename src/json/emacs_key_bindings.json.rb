@@ -15,6 +15,7 @@ def main
 
   puts JSON.pretty_generate(
     'title' => 'Emacs key bindings (rev 12)',
+    'maintainers' => ['tekezo'],
     'rules' => [
       # generic
       c_x_key_strokes,
@@ -117,7 +118,7 @@ def c_x_key_strokes
         'type' => 'basic',
         'from' => {
           'any' => 'key_code',
-          'modifiers' => Karabiner.from_modifiers(nil, ['any']),
+          'modifiers' => Karabiner.from_modifiers,
         },
         'conditions' => [Karabiner.variable_if('C-x', 1)],
       },
@@ -415,6 +416,7 @@ end
 def remove_empty_conditions(data)
   data['manipulators'].each do |m|
     next if m['conditions'].nil?
+
     m.delete('conditions') if m['conditions'].empty?
   end
   data
