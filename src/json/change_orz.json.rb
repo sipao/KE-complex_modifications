@@ -102,6 +102,7 @@ def main
           normal_key('open_bracket', 'p'),
           normal_key('close_bracket', 'open_bracket'),
           normal_key('backslash', 'close_bracket'),
+          normal_key('non_us_pound', 'close_bracket'),
 
           # 右中段
           normal_key('h', 'quote'),
